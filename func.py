@@ -1,14 +1,16 @@
 import numpy as np
+from fft import audio_to_function
 
-def f1(x):
-  return np.sin(x)
+class MusicFunc:
+  def __init__(self, N=3):
+    self.N = N
 
-def f2(x):
-  return np.cos(x) * np.sin(x)
+    self.data = []
+    for i in range(N):
+      audio_data, sample_rate = audio_to_function(f"my_recordings/record_{i+1}.wav")
+      self.data.append(audio_data)
 
-def f3(x):
-  return np.tan(x)
+  def super_f(self, index, x):
+    return self.data[index][x]
 
-def f4(x):
-  return np.sin(x) * np.cos(x) + np.tan(x) * np.sqrt(x)
 
